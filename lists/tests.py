@@ -8,6 +8,14 @@ from lists.models import Item
 
 # Create your tests here.
 
+class HomePageTest(TestCase):
+
+    def test_home_page_only_save_items_when_necessary(self):
+        request = HttpRequest()
+        home_page(request)
+        self.assertEqual(Item.objects.count(), 0)
+
+
 class SmokeTest(TestCase):
 
     def test_root_url_resolves_to_home_page_view(self):
@@ -26,6 +34,11 @@ class SmokeTest(TestCase):
         request.POST['item_text'] = 'A new list item'
 
         response = home_page(request)
+
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new list item')
+
         self.assertIn('A new list item', response.content.decode())
         expected_html = render_to_string(
             'home.html',
