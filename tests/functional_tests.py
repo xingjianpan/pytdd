@@ -44,7 +44,7 @@ class NewVisitorTest(unittest.TestCase):
 
 # She types "Buy peacock feathers" into a text box (Edith's hobby
 # is tying fly-fishing lures)
-        inputbox.send_keys('Buy peacokc feathers')
+        inputbox.send_keys('Buy peacock feathers')
 
 # when she hits enter, the page updates, and now the page lists
 # "1: Buy peacock feathers" as an item in a to-do lists
@@ -54,8 +54,8 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-                any(row.text == '1: Buy peacock feathers' for row in rows),
+        self.assertIn(
+                '1: Buy peacock feathers', [row.text for row in rows],
             "New to-do item did not appear in table --its text was:\n%s" % (
                 table.text,
             )
