@@ -57,15 +57,7 @@ class NewVisitorTest(unittest.TestCase):
 
 
         inputbox.send_keys(Keys.ENTER)
-
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn(
-                '1: Buy peacock feathers', [row.text for row in rows],
-            "New to-do item did not appear in table --its text was:\n%s" % (
-                table.text,
-            )
-        )
+        self.check_for_row_in_list_table('1: Buy peacock feathers')
 
 # There is still a text box inviting her to add another item. She
 # enters "Use peakcock feathers to make a fly"
@@ -80,17 +72,8 @@ class NewVisitorTest(unittest.TestCase):
 
 
 # The page updates again, andnow shows both items on her list
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn(
-                '1: Buy peacock feathers', [row.text for row in rows],
-            "New to-do item did not appear in table --its text was:\n%s" % (
-                table.text,
-            )
-        )
-        self.assertIn('2: Use peacock feathers to make a fly',
-                      [row.text for row in rows])
-
+        self.check_for_row_in_list_table('1: Buy peacock feathers')
+        self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
         self.fail('Finish the test')
 
 
