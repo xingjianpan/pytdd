@@ -78,7 +78,6 @@ class NewVisitorTest(LiveServerTestCase):
         # The page updates again, andnow shows both items on her list
         self.check_for_row_in_list_table('1: Buy peacock feathers')
         self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
-        self.fail('Finish the test')
 
 
 
@@ -115,6 +114,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Satisfied, they both go back to sleep.
 
 
+        self.fail('Finish the test')
 
 
 
