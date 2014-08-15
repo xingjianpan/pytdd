@@ -8,6 +8,18 @@ from lists.models import Item
 
 # Create your tests here.
 
+
+class LiveViewTest(TestCase):
+     def test_display_all_items(self):
+        Item.objects.create(text='itemey 1')
+        Item.objects.create(text='itemey 2')
+
+        response = self.client.get('/lists/the-only-list-in-the-world/')
+
+        self.assertContains(response, 'itemey 1')
+        self.assertContains(response, 'itemey 2')
+
+
 class HomePageTest(TestCase):
 
     def test_home_page_only_save_items_when_necessary(self):
