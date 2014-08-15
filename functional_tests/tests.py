@@ -1,4 +1,5 @@
-from django.test import LiveServerTestCase
+#from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerCase
 from selenium import webdriver
 from selenium.webdriver.common.proxy import *
 from selenium.webdriver.common.keys import Keys
@@ -15,7 +16,7 @@ proxy = Proxy({
     'noProxy': '' # set this value as desired
     })
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox(proxy=proxy)
