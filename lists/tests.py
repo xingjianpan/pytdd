@@ -26,7 +26,7 @@ class NewListTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/lists/the-only-lists-in-the-world/')
+        self.assertEqual(response['location'], '/lists/the-only-list-in-the-world/')
 
 
 
